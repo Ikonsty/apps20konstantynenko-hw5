@@ -28,13 +28,13 @@ public class AsIntStream implements IntStream {
     }
 
     @Override
-    public Double average() throws IllegalAccessException {
+    public double average() throws IllegalAccessException {
         checkLen();
         return Double.valueOf(sum()) / (double) stream.length;
     }
 
     @Override
-    public Integer max() throws IllegalAccessException {
+    public int max() throws IllegalAccessException {
         checkLen();
         int max = stream[0];
         for (int val : stream) {
@@ -46,7 +46,7 @@ public class AsIntStream implements IntStream {
     }
 
     @Override
-    public Integer min() throws IllegalAccessException {
+    public int min() throws IllegalAccessException {
         checkLen();
         int min = stream[0];
         for (int val : stream) {
@@ -63,7 +63,7 @@ public class AsIntStream implements IntStream {
     }
 
     @Override
-    public Integer sum() throws IllegalAccessException {
+    public int sum() throws IllegalAccessException {
         checkLen();
         int sum = 0;
         for (int val : stream) {
