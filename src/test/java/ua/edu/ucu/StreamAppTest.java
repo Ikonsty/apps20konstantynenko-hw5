@@ -54,16 +54,16 @@ public class StreamAppTest {
         assertEquals(expResult, result);
     }
 
-    @Test
-    public void testStreamMinMax() throws IllegalAccessException {
-        int[] intArr = {-1, 0, 1, 2, 3};
-        intStream = AsIntStream.of(intArr);
-
-        System.out.println("streamMinMax");
-        int[] expResult = {3, -1};
-        int[] result = StreamApp.streamMinMax(intStream);
-        assertEquals(expResult, result);
-    }
+//    @Test
+//    public void testStreamMinMax() throws IllegalAccessException {
+//        int[] intArr = {-1, 0, 1, 2, 3};
+//        intStream = AsIntStream.of(intArr);
+//
+//        System.out.println("streamMinMax");
+//        int[] expResult = {3, -1};
+//        int[] result = StreamApp.streamMinMax(intStream);
+//        assertEquals(expResult, result);
+//    }
 
     @Test
     public void testStreamCount() {
