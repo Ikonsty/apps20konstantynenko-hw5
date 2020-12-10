@@ -70,7 +70,18 @@ public class AsIntStream implements IntStream {
 
     @Override
     public IntStream filter(IntPredicate predicate) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Integer> filteredValues = new ArrayList<>();
+        for (int val : stream) {
+            if (predicate.test(val)) {
+                filteredValues.add(val);
+            }
+        }
+        int[] result = new int[filteredValues.size()];
+        for (int i = 0; i < result.length; i++)
+        {
+            result[i] = filteredValues.get(i);
+        }
+        return of(result);
     }
 
     @Override
@@ -100,7 +111,7 @@ public class AsIntStream implements IntStream {
         }
 
         int[] result = new int[mappedValues.size()];
-        for (int i=0; i < result.length; i++)
+        for (int i = 0; i < result.length; i++)
         {
             result[i] = mappedValues.get(i);
         }
