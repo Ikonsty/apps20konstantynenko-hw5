@@ -31,8 +31,12 @@ public class StreamApp {
         return intStream.average();
     }
 
-    public static int[] streamMinMax(IntStream intStream) throws IllegalAccessException {
-        return new int[]{intStream.max(), intStream.max()};
+    public static int streamMin(IntStream intStream) throws IllegalAccessException {
+        return intStream.min();
+    }
+
+    public static int streamMax(IntStream intStream) throws IllegalAccessException {
+        return intStream.max();
     }
 
     public static long streamCount(IntStream intStream) {
