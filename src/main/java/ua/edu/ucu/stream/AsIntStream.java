@@ -2,39 +2,70 @@ package ua.edu.ucu.stream;
 
 import ua.edu.ucu.function.*;
 
+import java.util.ArrayList;
+
 public class AsIntStream implements IntStream {
+    private static int[] stream;
 
     private AsIntStream() {
         // To Do
     }
 
     public static IntStream of(int... values) {
-        return null;
+        stream = new int[values.length];
+        System.arraycopy(values, 0, stream, 0, values.length);
+        return new AsIntStream();
+    }
+
+    private void checkLen() throws IllegalAccessException {
+        if (stream.length == 0) {
+            throw new IllegalAccessException("Stream is empty");
+        }
     }
 
     @Override
-    public Double average() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Double average() throws IllegalAccessException {
+        checkLen();
+        return Double.valueOf(sum()) / (double) stream.length;
     }
 
     @Override
-    public Integer max() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Integer max() throws IllegalAccessException {
+        checkLen();
+        int max = stream[0];
+        for (int val : stream) {
+            if (max < val) {
+                max = val;
+            }
+        }
+        return max;
     }
 
     @Override
-    public Integer min() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Integer min() throws IllegalAccessException {
+        checkLen();
+        int min = stream[0];
+        for (int val : stream) {
+            if (min > val) {
+                min = val;
+            }
+        }
+        return min;
     }
 
     @Override
     public long count() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return stream.length;
     }
 
     @Override
-    public Integer sum() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Integer sum() throws IllegalAccessException {
+        checkLen();
+        int sum = 0;
+        for (int val : stream) {
+            sum += val;
+        }
+        return sum;
     }
 
     @Override
@@ -44,27 +75,50 @@ public class AsIntStream implements IntStream {
 
     @Override
     public void forEach(IntConsumer action) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int val : stream) {
+            action.accept(val);
+        }
     }
 
     @Override
     public IntStream map(IntUnaryOperator mapper) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int[] mappedValues = new int[stream.length];
+        for (int i = 0; i < stream.length; i++) {
+            mappedValues[i] = mapper.apply(stream[i]);
+        }
+        return of(mappedValues);
     }
 
     @Override
     public IntStream flatMap(IntToIntStreamFunction func) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Integer> mappedValues = new ArrayList<>();
+        for (int val : stream) {
+            int[] arrayOfMappedValues = func.applyAsIntStream(val).toArray();
+            for (int mappedVal : arrayOfMappedValues) {
+                mappedValues.add(mappedVal);
+            }
+        }
+
+        int[] result = new int[mappedValues.size()];
+        for (int i=0; i < result.length; i++)
+        {
+            result[i] = mappedValues.get(i);
+        }
+        return of(result);
     }
 
     @Override
     public int reduce(int identity, IntBinaryOperator op) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int answer = identity;
+        for (int val : stream) {
+            answer = IntBinaryOperator.apply(answer, val);
+        }
+        return answer;
     }
 
     @Override
     public int[] toArray() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return stream;
     }
 
 }
