@@ -30,7 +30,7 @@ public class AsIntStream implements IntStream {
     @Override
     public double average() throws IllegalAccessException {
         checkLen();
-        return Double.valueOf(sum()) / (double) stream.length;
+        return (double) sum() / (double) stream.length;
     }
 
     @Override

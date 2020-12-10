@@ -26,4 +26,18 @@ public class StreamApp {
         intStream.forEach(x -> str.append(x));
         return str.toString();
     }
+
+    public static double streamAverage(IntStream intStream) throws IllegalAccessException {
+        return intStream.average();
+    }
+
+    public static int[] streamMinMax(IntStream intStream) throws IllegalAccessException {
+        return new int[]{intStream.max(), intStream.max()};
+    }
+
+    public static long streamCount(IntStream intStream) {
+        return intStream.count();
+    }
+
+
 }

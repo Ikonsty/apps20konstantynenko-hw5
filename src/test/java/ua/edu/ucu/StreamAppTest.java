@@ -42,5 +42,29 @@ public class StreamAppTest {
         String result = StreamApp.streamForEach(intStream);
         assertEquals(expResult, result);        
     }
+
+    @Test
+    public void testStreamAverage() throws IllegalAccessException {
+        System.out.println("streamAverage");
+        String expResult = "1";
+        String result = String.valueOf(StreamApp.streamAverage(intStream));
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testStreamMinMax() throws IllegalAccessException {
+        System.out.println("streamMinMax");
+        int[] expResult = {3, -1};
+        int[] result = StreamApp.streamMinMax(intStream);
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testStreamCount() {
+        System.out.println("streamCount");
+        long expResult = 5;
+        long result = StreamApp.streamCount(intStream);
+        assertEquals(expResult, result);
+    }
     
 }
