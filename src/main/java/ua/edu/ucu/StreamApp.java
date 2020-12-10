@@ -27,15 +27,18 @@ public class StreamApp {
         return str.toString();
     }
 
-    public static double streamAverage(IntStream intStream) throws IllegalAccessException {
+    public static double streamAverage(IntStream intStream)
+            throws IllegalAccessException {
         return intStream.average();
     }
 
-    public static int streamMin(IntStream intStream) throws IllegalAccessException {
+    public static int streamMin(IntStream intStream)
+            throws IllegalAccessException {
         return intStream.min();
     }
 
-    public static int streamMax(IntStream intStream) throws IllegalAccessException {
+    public static int streamMax(IntStream intStream)
+            throws IllegalAccessException {
         return intStream.max();
     }
 
