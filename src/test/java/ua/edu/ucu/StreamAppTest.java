@@ -45,6 +45,9 @@ public class StreamAppTest {
 
     @Test
     public void testStreamAverage() throws IllegalAccessException {
+        int[] intArr = {-1, 0, 1, 2, 3};
+        intStream = AsIntStream.of(intArr);
+
         System.out.println("streamAverage");
         String expResult = "1";
         String result = String.valueOf(StreamApp.streamAverage(intStream));
@@ -53,6 +56,9 @@ public class StreamAppTest {
 
     @Test
     public void testStreamMinMax() throws IllegalAccessException {
+        int[] intArr = {-1, 0, 1, 2, 3};
+        intStream = AsIntStream.of(intArr);
+
         System.out.println("streamMinMax");
         int[] expResult = {3, -1};
         int[] result = StreamApp.streamMinMax(intStream);
@@ -61,6 +67,9 @@ public class StreamAppTest {
 
     @Test
     public void testStreamCount() {
+        int[] intArr = {-1, 0, 1, 2, 3};
+        intStream = AsIntStream.of(intArr);
+
         System.out.println("streamCount");
         long expResult = 5;
         long result = StreamApp.streamCount(intStream);
