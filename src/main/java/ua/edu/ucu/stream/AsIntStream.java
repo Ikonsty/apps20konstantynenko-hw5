@@ -111,7 +111,7 @@ public class AsIntStream implements IntStream {
     public int reduce(int identity, IntBinaryOperator op) {
         int answer = identity;
         for (int val : stream) {
-            answer = IntBinaryOperator.apply(answer, val);
+            answer = op.apply(answer, val);
         }
         return answer;
     }
